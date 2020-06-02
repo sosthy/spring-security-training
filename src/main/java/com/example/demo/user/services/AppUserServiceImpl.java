@@ -2,6 +2,7 @@ package com.example.demo.user.services;
 
 import com.example.demo.user.models.AppUser;
 import com.example.demo.user.repositories.AppUserRepository;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +30,8 @@ public class AppUserServiceImpl implements AppUserService {
     }
 
     @Override
-    public List<AppUser> getAllUsers() {
-        List<AppUser> users = userRepository.findAll();
+    public List<AppUser> getAllUsers(Specification<AppUser> specification) {
+        List<AppUser> users = userRepository.findAll(specification);
         return users;
     }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.user.models;
 
+import com.example.demo.audit.Auditable;
 import com.example.demo.role.models.AppRole;
 import lombok.*;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,9 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity(name = "app_user")
+@Audited
 @Data @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(exclude = "roles")
-public class AppUser implements Serializable {
+public class AppUser extends Auditable<String> implements Serializable {
 
     @Id
     @GeneratedValue(generator = "user_generator")
